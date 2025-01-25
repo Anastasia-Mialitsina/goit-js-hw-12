@@ -37,7 +37,10 @@ form.addEventListener('submit', async event => {
   showLoadingIndicator();
 
   try {
-    const { images, totalHits: total } = await fetchImages(currentQuery, page);
+    const { hits: images, totalHits: total } = await fetchImages(
+      currentQuery,
+      page
+    );
     totalHits = total;
 
     if (images.length === 0) {
@@ -65,7 +68,7 @@ loadMoreBtn.addEventListener('click', async () => {
   showLoadingIndicator();
 
   try {
-    const { images } = await fetchImages(currentQuery, page);
+    const { hits: images } = await fetchImages(currentQuery, page);
     renderGallery(images, true);
     lightbox.refresh();
 
